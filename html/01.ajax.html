@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX</title>
-        <link rel="stylesheet" href="../css/all.min.css">
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/base.css">
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/moment.min.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AJAX</title>
+	<link rel="stylesheet" href="../css/all.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/base.css">
+	<script src="../js/jquery.min.js"></script>
+    <script src="../js/promise.polyfill.min.js"></script>
+	<script src="../js/moment.min.js"></script>
+    <script src="../js/axios.min.js"></script>
 </head>
 <body>
   
@@ -19,8 +21,58 @@
 	    * daily: https://api.openweathermap.org/data/2.5/weather
 	    * 5days: https://api.openweathermap.org/data/2.5/forecast
         * 테스트 : https://api.openweathermap.org/data/2.5/weather?appid=51e9470c85f7acfe6e70a90c0a750cc5&units=metric&lat=37.555275&lon=126.936924
+         * 
+         * AJAX: Asyncronous JavaScript And Xml 비동기 
+         * json : JavaScript Object Notation 자바 스크립트 오브젝트 표기법
+         * xsml: Extensible Markup Language 
+         * 
+         * xhr.readyState: 1 -> 서버와 연결됨.
+         * xhr.readyState: 2 -> 서버가 요청(requesr)을 받음.
+         * xhr.readyState: 3 -> 서버가 요청을 처리중.
+         * xhr.readyState: 4 -> 서버가 요청을 응답함.
          * */ 
 
-    </script>
+
+    var url = 'https://api.openweathermap.org/data/2.5/weather?appid=51e9470c85f7acfe6e70a90c0a750cc5&units=metric&lat=37.555275&lon=126.936924'
+
+
+
+	// 순수 자바스크립트 통신
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(e) {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			console.log(  JSON.parse(xhr.responseText)  );
+		}
+		else if(xhr.status >= 300) {
+			console.log(xhr.status);
+		}
+	}
+	// xhr.open('GET', url);
+	// xhr.send();
+
+	// jQuery
+	// $.get(url, function(r) { console.log(r) }); // callback
+	// $.get(url).then(onGet).catch(onError); // Promise ES6
+	function onGet(r) {
+		console.log(r);
+	}
+	
+	function onError(xhr, status, err) {
+		console.log(xhr, status, err);
+	}
+	
+	// axios
+	axios.get(url).then(onGet2).catch(onError2);
+
+	function onGet2(r) {
+		console.log(r);
+	}
+
+	function onError2(err) {
+		console.log(err);
+	}
+
+
+</script>
 </body>
 </html>
