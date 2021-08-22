@@ -14,16 +14,40 @@
 	<script src="../js/axios.min.js"></script>
 	<script src="../js/moment.min.js"></script>
 </head>
+
 <body>
-	<div class="container">
-		<div class="header-wrapper">
+	<div class="gnb-wrapper">
+		<header class="header-wrapper">
 			<div class="bt-prev">
 				<i class="fa fa-angle-left"></i> HOME
 			</div>
+		</header>
+		<footer class="footer-wrapper">
+			Copyright@booldook 2021. Allright reserved
+		</footer>
+		<div class="wrapper">
+			<section class="home-wrapper">
+				<div class="home-wrap">
+					<h1 class="logo">
+						<i class="fa fa-sun"></i>
+						날씨정보
+						<small>v 1.0</small>
+					</h1>
+					<div class="btn-wrap">
+						<button class="bt-daily btn btn-primary">현재 날씨</button>
+						<button class="bt-weekly btn btn-info">주간 날씨</button>
+					</div>
+				</div>
+			</section>
+			<section class="weather-wrapper">
+				<div class="daily-wrap">
+					DAILY
+				</div>
+				<div class="weekly-wrap">
+					WEEKLY
+				</div>
+			</section>
 		</div>
-		<div class="main-wrapper"></div>
-		<div class="daily-wrapper"></div>
-		<div class="weekly-wrapper"></div>
 	</div>
 	<script src="../js/03.weather.js"></script>
 </body>
